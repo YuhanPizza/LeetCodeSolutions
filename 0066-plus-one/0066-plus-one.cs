@@ -1,18 +1,17 @@
 public class Solution {
     public int[] PlusOne(int[] digits) {
-        List<int> result = new List<int>();
-        
-        int carry = 1;
-        
-        for(int i = digits.Length - 1; i >=0; i--){
-            int sum = digits[i] + carry;
-            result.Insert(0, sum % 10);
-            carry = sum / 10;
+        for (int i = digits.Length - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i] += 1;
+                return digits;
+            } else {
+                digits[i] = 0;
+            }
         }
-        
-        if(carry > 0 ){
-            result.Insert(0, carry);
-        }
-        return result.ToArray();
+
+        // If we are here, it means we need to add a new digit (carry)
+        int[] result = new int[digits.Length + 1];
+        result[0] = 1;
+        return result;
     }
 }
