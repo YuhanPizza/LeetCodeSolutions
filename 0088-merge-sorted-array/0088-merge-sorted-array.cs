@@ -1,18 +1,23 @@
 public class Solution {
     public void Merge(int[] nums1, int m, int[] nums2, int n) {
-        int[] potato = new int[n + m];
-        int i = 0;
-        int j = 0;
-        int k = 0;
+        int total = m + n;
+        int i = 0; int k = 0; int j = 0; 
+        int[] potato = new int [total];
 
-        while(j < n &&  i < m){
-            if(nums1[i] > nums2[j]){
-               potato[k] = nums2[j];
-               j++;
+        while( i < m && j < n){
+            if(nums1[i] < nums2[j]){
+                potato[k] = nums1[i];
+                i++;
             }else{
-               potato[k] = nums1[i];
-               i++;
+                potato[k] = nums2[j];
+                j++;
             }
+            k++;
+        }
+
+        while(i < m){
+            potato[k] = nums1[i];
+            i++;
             k++;
         }
 
@@ -21,12 +26,8 @@ public class Solution {
             j++;
             k++;
         }
-        while(i < m){
-            potato[k] = nums1[i];
-            i++;
-            k++;
-        }
-        for(int x= 0; x < m + n; x++){
+
+        for(int x = 0; x < total; x++){
             nums1[x] = potato[x];
         }
     }
